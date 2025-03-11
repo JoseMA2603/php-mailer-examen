@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono" name="telefono" required>
+                <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -30,10 +30,14 @@
                 <label for="mensaje">Mensaje:</label>
                 <textarea id="mensaje" name="mensaje" required></textarea>
             </div>
+            <label for="archivo">Adjuntar archivo:</label>
+            <input type="file" id="archivo" name="archivo">
+
             <button type="submit">Enviar</button>
         </form>
     </div>
     <script src="validacion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
 
