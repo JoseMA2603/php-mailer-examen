@@ -2,15 +2,17 @@
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 
-if($_POST){
-    $asunto=$_POST['asunto'];
-    $descripcion=$_POST['email'];
-    $mensaje=$_POST['mensaje'];
-}
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
+if($_POST){
+    $nombre = $_POST['nombre'];
+    $telefono = $_POST['telefono'];
+    $email = $_POST['email'];
+    $asunto = $_POST['asunto'];
+    $mensaje = $_POST['mensaje'];
+}
 
 //Load Composer's autoloader
 require 'libs/vendor/autoload.php';
@@ -33,18 +35,14 @@ try {
     $mail->setFrom('remitente@gmail.com', 'Julián');
     $mail->addAddress('josemartinezanguita26@gmail.com', 'José Martínez');     //Add a recipient
     
-
-    
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = $asunto;
-    $mail->Body    = $email;
-    $mail->Body    = $mensaje;
-    
+    $mail->Body    = "Nombre: $nombre<br>Teléfono: $telefono<br>Email: $email<br>Mensaje: $mensaje";
 
     $mail->send();
     header("Location:index.php");
-    echo "correo enviado";
+    echo "Correo enviado";
 } catch (Exception $e) {
-    echo "error en el envio: {$mail->ErrorInfo}";
+    echo "Error en el envío: {$mail->ErrorInfo}";
 }
